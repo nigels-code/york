@@ -1,15 +1,16 @@
 import { secondCalc, minuteCalc, hourCalc, dateCalc, monthCalc, yearCalc } from './calc-date.js';
 
 export const parse = (dateString) => {
+	if (!valid(dateString)) {
+		console.log(`The date string "${dateString}" isn't valid`);
+		return;
+	}
 	// returns milliseconds since epoch in UTC
 	let millis = Date.now();
 
 	// returns deliminaters as separate items in tokens array
 	// e.g. +7mon returns as ['+', '7mon']
 	const tokens = dateString.split(/(\+|-|@)/);
-	if (tokens[0] != 'now()') {
-		return "You haven't included now() at the beginning of your expression";
-	}
 
 	// regex matches numbers and strings and assigns them to named groups
 	// e.g. 7mon returns as val = '7' unit = 'mon'
@@ -48,8 +49,16 @@ const calcDate = (millis, oper, val, unit) => {
 		case 'y':
 			calcMillis = yearCalc(millis, oper, val);
 			break;
+		// shouldn't reach here because of initial validation check
 		default:
-			console.log('Incorrect unit', unit);
 	}
 	return calcMillis;
 };
+
+// returns true if dateString matches regex
+const valid = (dateString) => {
+	const regex = /^now\(\)(([+-][0-9]+(mon|[ydhms]))*(@(mon|[ydhms]))?)?$/;
+	return regex.test(dateString);
+};
+
+console.log(parse('now()'));

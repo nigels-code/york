@@ -12,8 +12,8 @@ export const secondCalc = (millis, oper, val) => {
 		case '@':
 			calcMillis = dt.setUTCMilliseconds(0);
 			break;
+		// shouldn't reach here because of initial validation check
 		default:
-			console.log('Seconds operator incorrect', oper);
 	}
 	return calcMillis;
 };
@@ -32,8 +32,8 @@ export const minuteCalc = (millis, oper, val) => {
 		case '@':
 			calcMillis = dt.setUTCSeconds(0, 0);
 			break;
+		// shouldn't reach here because of initial validation check
 		default:
-			console.log('Minutes operator incorrect', oper);
 	}
 	return calcMillis;
 };
@@ -52,8 +52,8 @@ export const hourCalc = (millis, oper, val) => {
 		case '@':
 			calcMillis = dt.setUTCMinutes(0, 0, 0);
 			break;
+		// shouldn't reach here because of initial validation check
 		default:
-			console.log('Hour operator incorrect', oper);
 	}
 	return calcMillis;
 };
@@ -72,8 +72,8 @@ export const dateCalc = (millis, oper, val) => {
 		case '@':
 			calcMillis = dt.setUTCHours(0, 0, 0, 0);
 			break;
+		// shouldn't reach here because of initial validation check
 		default:
-			console.log('Day operator incorrect', oper);
 	}
 	return calcMillis;
 };
@@ -92,8 +92,8 @@ export const monthCalc = (millis, oper, val) => {
 		case '@':
 			calcMillis = dateCalc(dt.setUTCDate(1), '@');
 			break;
+		// shouldn't reach here because of initial validation check
 		default:
-			console.log('Month operator incorrect', oper);
 	}
 	return calcMillis;
 };
@@ -113,8 +113,8 @@ export const yearCalc = (millis, oper, val) => {
 			// months range from 0 - 11
 			calcMillis = monthCalc(dt.setUTCMonth(0), '@');
 			break;
+		// shouldn't reach here because of initial validation check
 		default:
-			console.log('Year operator incorrect', oper);
 	}
 	return calcMillis;
 };
