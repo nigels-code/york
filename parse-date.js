@@ -2,8 +2,7 @@ import { secondCalc, minuteCalc, hourCalc, dateCalc, monthCalc, yearCalc } from 
 
 export const parse = (dateString) => {
 	if (!valid(dateString)) {
-		console.log(`The date string "${dateString}" isn't valid`);
-		return;
+		throw new Error(`The date string "${dateString}" isn't valid`);
 	}
 	// returns milliseconds since epoch in UTC
 	let millis = Date.now();
@@ -60,5 +59,3 @@ const valid = (dateString) => {
 	const regex = /^now\(\)(([+-][0-9]+(mon|[ydhms]))*(@(mon|[ydhms]))?)?$/;
 	return regex.test(dateString);
 };
-
-console.log(parse('now()'));
