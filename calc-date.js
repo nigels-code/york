@@ -104,10 +104,10 @@ export const yearCalc = (millis, oper, val) => {
 	let calcMillis;
 	switch (oper) {
 		case '+':
-			calcMillis = dt.setUTCYear(year + val);
+			calcMillis = dt.setUTCFullYear(year + val);
 			break;
 		case '-':
-			calcMillis = dt.setUTCYear(year - val);
+			calcMillis = dt.setUTCFullYear(year - val);
 			break;
 		case '@':
 			// months range from 0 - 11
