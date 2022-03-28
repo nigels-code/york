@@ -1,0 +1,120 @@
+export const secondCalc = (millis, oper, val) => {
+	const dt = new Date(millis);
+	const seconds = dt.getUTCSeconds();
+	let calcMillis;
+	switch (oper) {
+		case '+':
+			calcMillis = dt.setUTCSeconds(seconds + val);
+			break;
+		case '-':
+			calcMillis = dt.setUTCSeconds(seconds - val);
+			break;
+		case '@':
+			calcMillis = dt.setUTCMilliseconds(0);
+			break;
+		default:
+			console.log('Seconds operator incorrect', oper);
+	}
+	return calcMillis;
+};
+
+export const minuteCalc = (millis, oper, val) => {
+	const dt = new Date(millis);
+	const minutes = dt.getUTCMinutes();
+	let calcMillis;
+	switch (oper) {
+		case '+':
+			calcMillis = dt.setUTCMinutes(minutes + val);
+			break;
+		case '-':
+			calcMillis = dt.setUTCMinutes(minutes - val);
+			break;
+		case '@':
+			calcMillis = dt.setUTCSeconds(0, 0);
+			break;
+		default:
+			console.log('Minutes operator incorrect', oper);
+	}
+	return calcMillis;
+};
+
+export const hourCalc = (millis, oper, val) => {
+	const dt = new Date(millis);
+	const hours = dt.getUTCHours();
+	let calcMillis;
+	switch (oper) {
+		case '+':
+			calcMillis = dt.setUTCHours(hours + val);
+			break;
+		case '-':
+			calcMillis = dt.setUTCHours(hours - val);
+			break;
+		case '@':
+			calcMillis = dt.setUTCMinutes(0, 0, 0);
+			break;
+		default:
+			console.log('Hour operator incorrect', oper);
+	}
+	return calcMillis;
+};
+
+export const dateCalc = (millis, oper, val) => {
+	const dt = new Date(millis);
+	const day = dt.getUTCDate();
+	let calcMillis;
+	switch (oper) {
+		case '+':
+			calcMillis = dt.setUTCDate(day + val);
+			break;
+		case '-':
+			calcMillis = dt.setUTCDate(day - val);
+			break;
+		case '@':
+			calcMillis = dt.setUTCHours(0, 0, 0, 0);
+			break;
+		default:
+			console.log('Day operator incorrect', oper);
+	}
+	return calcMillis;
+};
+
+export const monthCalc = (millis, oper, val) => {
+	const dt = new Date(millis);
+	const month = dt.getUTCMonth();
+	let calcMillis;
+	switch (oper) {
+		case '+':
+			calcMillis = dt.setUTCMonth(month + val);
+			break;
+		case '-':
+			calcMillis = dt.setUTCMonth(month - val);
+			break;
+		case '@':
+			calcMillis = dateCalc(dt.setUTCDate(1), '@');
+			break;
+		default:
+			console.log('Month operator incorrect', oper);
+	}
+	return calcMillis;
+};
+
+export const yearCalc = (millis, oper, val) => {
+	const dt = new Date(millis);
+	const year = dt.getUTCFullYear();
+	let calcMillis;
+	switch (oper) {
+		case '+':
+			calcMillis = dt.setUTCYear(year + val);
+			break;
+		case '-':
+			calcMillis = dt.setUTCYear(year - val);
+			break;
+		case '@':
+			// months range from 0 - 11
+			calcMillis = monthCalc(dt.setUTCMonth(0), '@');
+			break;
+		default:
+			console.log('Year operator incorrect', oper);
+	}
+	return calcMillis;
+};
